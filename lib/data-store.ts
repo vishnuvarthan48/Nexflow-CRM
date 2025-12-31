@@ -16,6 +16,7 @@ import type {
   WorkflowStatus,
   Task,
   AssignmentRule,
+  Tenant, // Added Tenant type
 } from "./types"
 import {
   mockUsers,
@@ -31,7 +32,8 @@ import {
   mockItemsServices,
   defaultLeadStatuses,
   defaultAssignmentRules,
-  mockTasks, // Added mockTasks import
+  mockTasks,
+  mockTenants, // Added mockTenants import
 } from "./mock-data"
 
 // Simple in-memory data store with localStorage persistence
@@ -65,8 +67,9 @@ class DataStore {
       companies: mockCompanies,
       itemsServices: mockItemsServices,
       workflowStatuses: defaultLeadStatuses,
-      tasks: mockTasks, // Changed from empty array to mockTasks
+      tasks: mockTasks,
       assignmentRules: defaultAssignmentRules,
+      tenants: mockTenants, // Added tenants to default data
     }
   }
 
@@ -113,6 +116,7 @@ class DataStore {
   getWorkflowStatuses = () => this.getData().workflowStatuses as WorkflowStatus[]
   getTasks = () => this.getData().tasks as Task[]
   getAssignmentRules = () => this.getData().assignmentRules as AssignmentRule[]
+  getTenants = () => this.getData().tenants as Tenant[] // Added getTenants
 
   // Add methods
   addLead = (lead: Lead) => {
@@ -184,6 +188,13 @@ class DataStore {
   addAssignmentRule = (rule: AssignmentRule) => {
     const data = this.getData()
     data.assignmentRules.push(rule)
+    this.saveData(data)
+  }
+
+  addTenant = (tenant: Tenant) => {
+    // Added tenant management methods
+    const data = this.getData()
+    data.tenants.push(tenant)
     this.saveData(data)
   }
 
@@ -341,6 +352,16 @@ class DataStore {
     }
   }
 
+  updateTenant = (id: string, updates: Partial<Tenant>) => {
+    // Added tenant update method
+    const data = this.getData()
+    const index = data.tenants.findIndex((t: Tenant) => t.id === id)
+    if (index !== -1) {
+      data.tenants[index] = { ...data.tenants[index], ...updates, updatedAt: new Date() }
+      this.saveData(data)
+    }
+  }
+
   // Delete methods
   deleteLead = (id: string) => {
     const data = this.getData()
@@ -369,6 +390,13 @@ class DataStore {
   deleteTask = (id: string) => {
     const data = this.getData()
     data.tasks = data.tasks.filter((t: Task) => t.id !== id)
+    this.saveData(data)
+  }
+
+  deleteTenant = (id: string) => {
+    // Added tenant delete method
+    const data = this.getData()
+    data.tenants = data.tenants.filter((t: Tenant) => t.id !== id)
     this.saveData(data)
   }
 
@@ -425,6 +453,7 @@ export function useDataStore() {
     workflowStatuses: dataStore.getWorkflowStatuses(),
     tasks: dataStore.getTasks(),
     assignmentRules: dataStore.getAssignmentRules(),
+    tenants: dataStore.getTenants(), // Added tenants to hook return
     refresh,
   }
 }

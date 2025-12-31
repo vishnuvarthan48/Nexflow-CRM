@@ -4,7 +4,7 @@ import { ServiceReports } from "@/components/reports/service-reports"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const metadata = {
-  title: "Reports & Analytics - MedEquip CRM",
+  title: "Reports & Analytics - NexFlow CRM",
   description: "View reports and analytics",
 }
 

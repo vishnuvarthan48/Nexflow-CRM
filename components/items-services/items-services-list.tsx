@@ -11,9 +11,11 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { dataStore, useDataStore } from "@/lib/data-store"
 import type { ItemService } from "@/lib/types"
-import { Plus, Edit, Trash2, Search } from "lucide-react"
+import { Plus, Edit, Trash2, Search, ArrowLeft } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function ItemsServicesList() {
+  const router = useRouter()
   const { itemsServices, refresh } = useDataStore()
   const [searchTerm, setSearchTerm] = useState("")
   const [filterCategory, setFilterCategory] = useState<string>("all")
@@ -93,9 +95,14 @@ export function ItemsServicesList() {
     <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">Items & Services</h1>
-            <p className="text-muted-foreground">Manage your items and services catalog</p>
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" onClick={() => router.back()} className="h-8 w-8">
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold">Items & Services</h1>
+              <p className="text-muted-foreground">Manage your items and services catalog</p>
+            </div>
           </div>
           <Button onClick={() => handleOpenDialog()}>
             <Plus className="mr-2 h-4 w-4" />

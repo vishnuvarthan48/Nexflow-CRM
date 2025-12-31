@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 export const metadata = {
-  title: "Lead Details - MedEquip CRM",
+  title: "Lead Details - NexFlow CRM",
 }
 
 export default function LeadDetailPage({ params }: { params: { id: string } }) {

@@ -5,7 +5,7 @@ import { Plus } from "lucide-react"
 import Link from "next/link"
 
 export const metadata = {
-  title: "Quotations - MedEquip CRM",
+  title: "Quotations - NexFlow CRM",
   description: "Manage quotations and approvals",
 }
 

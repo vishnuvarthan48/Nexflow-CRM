@@ -387,3 +387,57 @@ export interface AssignmentCriteria {
   operator: string
   value: any
 }
+
+export interface Tenant {
+  id: string
+  name: string
+  domain: string // subdomain or custom domain
+  status: "Active" | "Inactive" | "Suspended"
+  plan: "Free" | "Starter" | "Professional" | "Enterprise"
+  maxUsers: number
+  currentUsers: number
+
+  // Admin contact
+  adminName: string
+  adminEmail: string
+  adminPhone?: string
+
+  // Company information
+  companyAddress?: string
+  companyCity?: string
+  companyState?: string
+  companyCountry?: string
+  companyPincode?: string
+
+  // Configuration
+  features: string[] // Array of enabled feature flags
+  customBranding?: {
+    logo?: string
+    primaryColor?: string
+    secondaryColor?: string
+  }
+
+  // Billing
+  billingEmail?: string
+  subscriptionStartDate: Date
+  subscriptionEndDate?: Date
+
+  // Metadata
+  createdAt: Date
+  updatedAt: Date
+  createdBy: string
+  lastLoginDate?: Date
+  notes?: string
+}
+
+export interface TenantUser {
+  id: string
+  tenantId: string
+  email: string
+  name: string
+  role: UserRole
+  status: "Active" | "Invited" | "Inactive"
+  invitedAt?: Date
+  activatedAt?: Date
+  lastLoginAt?: Date
+}

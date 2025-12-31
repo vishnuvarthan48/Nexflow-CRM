@@ -5,10 +5,14 @@ import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 export const metadata = {
-  title: "Service Request Details - MedEquip CRM",
+  title: "Service Request Details - NexFlow CRM",
 }
 
 export default function ServiceRequestDetailPage({ params }: { params: { id: string } }) {
+  if (params.id === "new") {
+    return null
+  }
+
   return (
     <DashboardShell>
       <div className="flex flex-col gap-6">
