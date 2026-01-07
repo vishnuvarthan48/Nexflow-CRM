@@ -1,15 +1,6 @@
-import { DashboardShell } from "@/components/dashboard/dashboard-shell"
-import { TenantsList } from "@/components/tenants/tenants-list"
+import { redirect } from "next/navigation"
 
-export const metadata = {
-  title: "Tenant Management - NexFlow CRM",
-  description: "Manage tenant organizations and subscriptions",
-}
-
-export default function TenantsPage() {
-  return (
-    <DashboardShell>
-      <TenantsList />
-    </DashboardShell>
-  )
+export default function HomePage() {
+  // Redirect to dashboard
+  redirect("/dashboard")
 }
