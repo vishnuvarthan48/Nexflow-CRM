@@ -40,15 +40,15 @@ const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Leads", href: "/dashboard/leads", icon: Users },
   { name: "Visits", href: "/dashboard/visits", icon: Calendar },
-  { name: "Quotations", href: "/dashboard/quotations", icon: FileText },
   { name: "Demos", href: "/dashboard/demos", icon: Microscope },
+  { name: "Quotations", href: "/dashboard/quotations", icon: FileText },
   { name: "Service", href: "/dashboard/service", icon: Wrench },
   { name: "Companies", href: "/dashboard/companies", icon: Building2 },
   { name: "Items/Services", href: "/dashboard/items-services", icon: Package },
-  { name: "Reports", href: "/dashboard/reports", icon: BarChart3 },
   { name: "Tasks", href: "/dashboard/tasks", icon: CheckCircle2 },
+  { name: "Reports", href: "/dashboard/reports", icon: BarChart3 },
   { name: "Workflow", href: "/dashboard/workflow", icon: Settings },
-  { name: "Tenants", href: "/dashboard/tenants", icon: Server }, // Added Tenants navigation
+  { name: "Tenants", href: "/dashboard/tenants", icon: Server },
 ]
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
